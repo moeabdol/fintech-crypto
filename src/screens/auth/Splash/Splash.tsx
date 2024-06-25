@@ -1,11 +1,56 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import type { SplashNavigationProps } from '@/src/types/navigation';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { Image } from 'expo-image';
+import { StatusBar } from 'expo-status-bar';
+import { useColorScheme } from 'nativewind';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import Animated, { FadeInRight } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { CryptoText, FintechText } from './styles';
 
 function Splash() {
+	const { color, toggleColorScheme } = useColorScheme();
+	const { navigate }: NavigationProp<SplashNavigationProps> = useNavigation();
+	const blurhash = 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.';
+
+	useEffect(() => {
+		// setTimeout(() => {
+		// navigate('Welcome');
+		// }, 2000);
+	}, []);
+
 	return (
-		<View>
-			<Text>Splash Component</Text>
-		</View>
+		<SafeAreaView className="flex-1 justify-center items-center bg-white">
+			<StatusBar style="auto" />
+			<View className="w-full px-4 items-center">
+				<Animated.View
+					className="flex-row justify-center items-center"
+					entering={FadeInRight.duration(100).delay(200).springify()}
+				>
+					<View className="w-20 h-20 overflow-hidden">
+						<Image
+							source={require('../../../../assets/images/logo.png')}
+							placeholder={blurhash}
+							contentFit="cover"
+							transition={1000}
+							className="w-full h-full"
+						/>
+					</View>
+				</Animated.View>
+				<Animated.View
+					className="flex-row justify-center items-center"
+					entering={FadeInRight.duration(100).delay(200).springify()}
+				>
+					<FintechText className="text-neutral-600 text-xl leading-[60px] pl-1">
+						FINTECH
+					</FintechText>
+					<CryptoText className="text-[#31aca3] text-xl leading-[60px] pl-1">
+						CRYPTO
+					</CryptoText>
+				</Animated.View>
+			</View>
+		</SafeAreaView>
 	);
 }
 

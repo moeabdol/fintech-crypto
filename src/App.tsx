@@ -1,12 +1,25 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import styled from 'styled-components/native';
+import useCachedResources from './hooks/useCachedResources';
+import RootNavigation from './screens/navigation/RootNavigation';
 
 function App() {
+	const { isLoading } = useCachedResources();
+
+	if (isLoading) return null;
+
 	return (
-		<View className="bg-orange-500 flex-1 justify-center items-center">
-			<Text className="text-white text-3xl font-semibold">Hello, World!</Text>
-		</View>
+		<Container>
+			<StatusBar style="auto" />
+			<RootNavigation />
+		</Container>
 	);
 }
+
+const Container = styled(View)`
+	flex: 1;
+`;
 
 export default App;
