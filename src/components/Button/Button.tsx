@@ -1,11 +1,19 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
-function Button() {
+type ButtonProps = {
+	title: string;
+	action: () => void;
+};
+
+function Button({ title, action }: ButtonProps) {
 	return (
-		<View>
-			<Text>Button Component</Text>
-		</View>
+		<Pressable
+			className="bg-[#2ab07c] rounded-lg justify-center items-center py-3"
+			onPress={action}
+		>
+			<Text className="text-white font-bold text-lg">{title}</Text>
+		</Pressable>
 	);
 }
 

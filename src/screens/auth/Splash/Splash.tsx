@@ -4,9 +4,8 @@ import { Image } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import Animated, { FadeInRight } from 'react-native-reanimated';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { CryptoText, FintechText } from './styles';
 
 function Splash() {
@@ -15,9 +14,9 @@ function Splash() {
 	const blurhash = 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.';
 
 	useEffect(() => {
-		// setTimeout(() => {
-		// navigate('Welcome');
-		// }, 2000);
+		setTimeout(() => {
+			navigate('Welcome');
+		}, 2000);
 	}, []);
 
 	return (
