@@ -1,10 +1,7 @@
 import Breaker from '@/src/components/Breaker';
 import Button from '@/src/components/Button';
 import ButtonOutline from '@/src/components/ButtonOutline';
-import type {
-	AuthNavigationProps,
-	TabNavigationProps,
-} from '@/src/types/navigation';
+import type { AuthNavigationProps } from '@/src/types/navigation';
 import { AntDesign } from '@expo/vector-icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
@@ -74,7 +71,7 @@ function Welcome() {
 
 				<View className="w-full justify-normal">
 					<Animated.View
-						className="border border-white pb-4"
+						className="pb-4"
 						entering={FadeInDown.duration(100).delay(600).springify()}
 					>
 						<ButtonOutline title="Continue with Google">
@@ -82,7 +79,7 @@ function Welcome() {
 						</ButtonOutline>
 					</Animated.View>
 					<Animated.View
-						className="border border-white pb-4"
+						className="pb-4"
 						entering={FadeInDown.duration(100).delay(700).springify()}
 					>
 						<ButtonOutline title="Continue with Apple">
