@@ -1,3 +1,4 @@
+import blurhash from '@/src/constants/blurhash';
 import type { SplashNavigationProps } from '@/src/types/navigation';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image } from 'expo-image';
@@ -11,7 +12,6 @@ import { CryptoText, FintechText } from './styles';
 function Splash() {
 	const { color, toggleColorScheme } = useColorScheme();
 	const { navigate }: NavigationProp<SplashNavigationProps> = useNavigation();
-	const blurhash = 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.';
 
 	useEffect(() => {
 		setTimeout(() => {

@@ -1,6 +1,7 @@
 import Breaker from '@/src/components/Breaker';
 import Button from '@/src/components/Button';
 import ButtonOutline from '@/src/components/ButtonOutline';
+import blurhash from '@/src/constants/blurhash';
 import type { AuthNavigationProps } from '@/src/types/navigation';
 import { AntDesign } from '@expo/vector-icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
@@ -10,8 +11,6 @@ import React from 'react';
 import { SafeAreaView, View } from 'react-native';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { WelcomeText } from './styles';
-
-const blurhash = 'LGFFaXYk^6#M@-5c,1J5@[or[Q6.';
 
 function Welcome() {
 	const { navigate }: NavigationProp<AuthNavigationProps> = useNavigation();
