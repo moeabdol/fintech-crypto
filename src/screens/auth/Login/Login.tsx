@@ -1,12 +1,15 @@
 import Breaker from '@/src/components/Breaker';
 import Button from '@/src/components/Button';
 import ButtonOutline from '@/src/components/ButtonOutline';
+import useSupabaseAuth from '@/src/hooks/useSupabaseAuth';
+import useUserStore from '@/src/store/useUserStore';
 import type { AuthNavigationProps } from '@/src/types/navigation';
 import { AntDesign } from '@expo/vector-icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
 	ActivityIndicator,
+	Alert,
 	Dimensions,
 	Pressable,
 	Text,
@@ -27,10 +30,30 @@ function Login() {
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
 	const { navigate }: NavigationProp<AuthNavigationProps> = useNavigation();
+	const [isLoading, setIsLoading] = useState(false);
+	const { loginWithEmail } = useSupabaseAuth();
+	const { setSession, setUser } = useUserStore();
+
+	const login = async () => {
+		setIsLoading(true);
+
+		const { data, error } = await loginWithEmail(email!, password!);
+
+		if (data.session && data.user) {
+			setSession(data.session);
+			setUser(data.user);
+		}
+
+		if (error) {
+			Alert.alert(error.message);
+		}
+
+		setIsLoading(false);
+	};
 
 	return (
 		<View className="flex-1">
-			{false && (
+			{isLoading && (
 				<View className="absolute z-50 h-full w-full justify-center items-center">
 					<View className="h-full w-full justify-center items-center bg-black opacity-[0.45]"></View>
 					<View className="absolute">
@@ -86,7 +109,7 @@ function Login() {
 						entering={FadeInDown.duration(100).delay(300).springify()}
 					>
 						<View className="pb-6">
-							<Button title="Login" />
+							<Button title="Login" action={login} />
 						</View>
 					</Animated.View>
 

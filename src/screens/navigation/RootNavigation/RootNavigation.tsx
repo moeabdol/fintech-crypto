@@ -1,16 +1,17 @@
+import useUserStore from '@/src/store/useUserStore';
 import { NavigationContainer } from '@react-navigation/native';
 import {
 	createStackNavigator,
 	TransitionPresets,
 } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React from 'react';
 import AuthNavigation from '../AuthNavigation';
 import HomeNavigation from '../TabNavigation/HomeNavigation';
 
 const Stack = createStackNavigator();
 
 function RootNavigation() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const { session } = useUserStore();
 
 	return (
 		<NavigationContainer>
@@ -23,7 +24,7 @@ function RootNavigation() {
 					gestureDirection: 'horizontal',
 				}}
 			>
-				{isLoggedIn ? (
+				{session && session.user ? (
 					<Stack.Screen name="HomeNavigation" component={HomeNavigation} />
 				) : (
 					<Stack.Screen name="AuthNavigation" component={AuthNavigation} />
